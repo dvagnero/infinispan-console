@@ -171,27 +171,27 @@
           "statistics-title": "Statistics",
           "statistics-tooltip": "Enable statistics for your cache.",
           "encoding-cache-title": "Encoding",
-          "encoding-cache-tooltip": "Select one from the following list of media types.",
+          "encoding-cache-tooltip": "Select one from the following media types.",
           "encoding-cache-select-label": "Select encoding."
         },
         "advanced-options": {
           "nav-title": "Advanced options",
           "page-title": "Advanced options",
-          "page-subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-          "storage-title": "Storage",
-          "storage-tooltip": "Storage of the cache.",
+          "page-subtitle": "Modify the following configuration options to better suit your use case.",
+          "storage-title": "Memory",
+          "storage-tooltip": "Select memory space for storing cache entries. You can store entries in JVM heap memory or in native memory outside the JVM heap space.",
           "radio-heap": "HEAP",
           "radio-off-heap": "OFF_HEAP",
           "locking-title": "Locking",
-          "locking-subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+          "locking-subtitle": "Manage concurrent access to data by configuring locking mechanism.",
           "concurrency-level-title": "Concurrency level",
-          "concurrency-level-tooltip": "Concurrency level of the cache.",
+          "concurrency-level-tooltip": "Set concurrency level based on the number of concurrent threads used within a lock container.",
           "isolation-level-title": "Isolation level",
-          "isolation-level-tooltip": "Isolation level of the cache.",
-          "lock-acquisition-timeout-title": "Lock acquisition timeout",
-          "lock-acquisition-timeout-tooltip": "Lock acquisition timeout of the cache.",
-          "striping": "Striping",
-          "striping-tooltip": "Striping of the cache."
+          "isolation-level-tooltip": "Select from the following isolation levels to control concurrent reads from different transactions.",
+          "lock-acquisition-timeout-title": "Lock timeout",
+          "lock-acquisition-timeout-tooltip": "Specify the amount of time, in milliseconds, to wait for a lock acquisition.",
+          "striping": "Lock striping",
+          "striping-tooltip": "Enable the use of a fixed-size, shared collection of locks for the entire cache. When you disable striping, a new lock is created per entry which causes additional memory usage."
         }
       },
       "review": {
