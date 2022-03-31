@@ -62,7 +62,7 @@ const AdvancedOptions = (props: {
         return (
             <React.Fragment>
                 <TextContent>
-                    <Text component={TextVariants.h3}>{t('caches.create.configurations.advanced-options.page-title')}</Text>
+                    <Text component={TextVariants.h1}>{t('caches.create.configurations.advanced-options.page-title')}</Text>
                 </TextContent>
                 <TextContent>
                     <Text component={TextVariants.p}>{t('caches.create.configurations.advanced-options.page-subtitle')}</Text>
@@ -72,7 +72,7 @@ const AdvancedOptions = (props: {
                     isRequired
                     fieldId="field-storage"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.storage-title')} toolTip={t('caches.create.configurations.advanced-options.storage-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.storage-title')} toolTip={t('caches.create.configurations.advanced-options.storage-tooltip')} textComponent={TextVariants.h3} />
                     <Radio
                         name="radio"
                         id="heap"
@@ -80,7 +80,7 @@ const AdvancedOptions = (props: {
                         isChecked={storage as StorageType == StorageType.HEAP}
                         label={
                             <TextContent>
-                                <Text component={TextVariants.h3}>
+                                <Text component={TextVariants.h4}>
                                     {t('caches.create.configurations.advanced-options.radio-heap')}
                                 </Text>
                             </TextContent>
@@ -93,7 +93,7 @@ const AdvancedOptions = (props: {
                         isChecked={storage as StorageType == StorageType.OFF_HEAP}
                         label={
                             <TextContent>
-                                <Text component={TextVariants.h3}>
+                                <Text component={TextVariants.h4}>
                                     {t('caches.create.configurations.advanced-options.radio-off-heap')}
                                 </Text>
                             </TextContent>
@@ -115,7 +115,7 @@ const AdvancedOptions = (props: {
         return (
             <React.Fragment>
                 <TextContent>
-                    <Text component={TextVariants.h3}>{t('caches.create.configurations.advanced-options.locking-title')}</Text>
+                    <Text component={TextVariants.h2}>{t('caches.create.configurations.advanced-options.locking-title')}</Text>
                 </TextContent>
                 <TextContent>
                     <Text component={TextVariants.p}>{t('caches.create.configurations.advanced-options.locking-subtitle')}</Text>
@@ -125,7 +125,7 @@ const AdvancedOptions = (props: {
                     isRequired
                     fieldId="field-concurrency-level"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.concurrency-level-title')} toolTip={t('caches.create.configurations.advanced-options.concurrency-level-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.concurrency-level-title')} toolTip={t('caches.create.configurations.advanced-options.concurrency-level-tooltip')} textComponent={TextVariants.h3} />
                     <TextInput value={concurrencyLevel} type="number" onChange={handleConcurrencyLevel} aria-label="concurrency-level-input" />
                 </FormGroup>
                 <FormGroup
@@ -133,7 +133,7 @@ const AdvancedOptions = (props: {
                     isRequired
                     fieldId="field-isolation-level"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.isolation-level-title')} toolTip={t('caches.create.configurations.advanced-options.isolation-level-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.isolation-level-title')} toolTip={t('caches.create.configurations.advanced-options.isolation-level-tooltip')} textComponent={TextVariants.h3} />
                     <Select
                         variant={SelectVariant.single}
                         aria-label="isolation-level-select"
@@ -151,7 +151,7 @@ const AdvancedOptions = (props: {
                     isRequired
                     fieldId="field-lock-acquisition-timeout"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.lock-acquisition-timeout-title')} toolTip={t('caches.create.configurations.advanced-options.lock-acquisition-timeout-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.lock-acquisition-timeout-title')} toolTip={t('caches.create.configurations.advanced-options.lock-acquisition-timeout-tooltip')} textComponent={TextVariants.h3} />
                     <TextInput value={lockAcquisitionTimeout} type="number" onChange={handleLockAcquisitionTimeout} aria-label="lock-acquisition-timeout-input" />
                 </FormGroup>
                 <FormGroup
@@ -165,7 +165,7 @@ const AdvancedOptions = (props: {
                         onChange={() => setStriping(!striping)}
                         isReversed
                     />
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.striping')} toolTip={t('caches.create.configurations.advanced-options.striping-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.striping')} toolTip={t('caches.create.configurations.advanced-options.striping-tooltip')} textComponent={TextVariants.h3} />
                 </FormGroup>
             </React.Fragment>
         );

@@ -82,7 +82,7 @@ const ConfigurationBasic = (props:
         return (
             <React.Fragment>
                 <Stack hasGutter>
-                    <MoreInfoTooltip label={t('caches.create.configurations.basic.topology-title')} toolTip={t('caches.create.configurations.basic.topology-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.basic.topology-title')} toolTip={t('caches.create.configurations.basic.topology-tooltip')} textComponent={TextVariants.h3} />
                     <FormGroup
                         isInline
                         isRequired
@@ -95,7 +95,7 @@ const ConfigurationBasic = (props:
                             isChecked={topology as CacheType == CacheType.Distributed}
                             label={
                                 <TextContent>
-                                    <Text component={TextVariants.h3}>
+                                    <Text component={TextVariants.h4}>
                                         {t('caches.create.configurations.basic.topology-distributed')}
                                     </Text>
                                 </TextContent>
@@ -108,7 +108,7 @@ const ConfigurationBasic = (props:
                             isChecked={topology as CacheType == CacheType.Replicated}
                             label={
                                 <TextContent>
-                                    <Text component={TextVariants.h3}>{t('caches.create.configurations.basic.topology-replicated')}</Text>
+                                    <Text component={TextVariants.h4}>{t('caches.create.configurations.basic.topology-replicated')}</Text>
                                 </TextContent>
                             }
                         />
@@ -116,7 +116,7 @@ const ConfigurationBasic = (props:
                 </Stack>
 
                 <Stack hasGutter>
-                    <MoreInfoTooltip label={t('caches.create.configurations.basic.mode-title')} toolTip={t('caches.create.configurations.basic.mode-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.basic.mode-title')} toolTip={t('caches.create.configurations.basic.mode-tooltip')} textComponent={TextVariants.h3} />
                     <FormGroup
                         isInline
                         isRequired
@@ -129,7 +129,7 @@ const ConfigurationBasic = (props:
                             isChecked={mode as CacheMode == CacheMode.ASYNC}
                             label={
                                 <TextContent>
-                                    <Text component={TextVariants.h3}>{t('caches.create.configurations.basic.mode-async')}</Text>
+                                    <Text component={TextVariants.h4}>{t('caches.create.configurations.basic.mode-async')}</Text>
                                 </TextContent>
                             }
                         />
@@ -140,7 +140,7 @@ const ConfigurationBasic = (props:
                             isChecked={mode as CacheMode == CacheMode.SYNC}
                             label={
                                 <TextContent>
-                                    <Text component={TextVariants.h3}>{t('caches.create.configurations.basic.mode-sync')}</Text>
+                                    <Text component={TextVariants.h4}>{t('caches.create.configurations.basic.mode-sync')}</Text>
                                 </TextContent>
                             }
                         />
@@ -156,7 +156,7 @@ const ConfigurationBasic = (props:
             <FormGroup
                 fieldId='field-number-owners'
                 isRequired={topology as CacheType == CacheType.Distributed}> {/*Required when topology is distributed */}
-                <MoreInfoTooltip label={t('caches.create.configurations.basic.number-owners')} toolTip={t('caches.create.configurations.basic.number-owners-tooltip')} textComponent={TextVariants.h4} />
+                <MoreInfoTooltip label={t('caches.create.configurations.basic.number-owners')} toolTip={t('caches.create.configurations.basic.number-owners-tooltip')} textComponent={TextVariants.h3} />
                 <NumberInput
                     value={selectedNumberOwners}
                     min={minValue}
@@ -200,14 +200,14 @@ const ConfigurationBasic = (props:
                         onChange={() => setIsStatistics(!isStatistics)}
                         isReversed
                     />
-                    <MoreInfoTooltip label={t('caches.create.configurations.basic.statistics-title')} toolTip={t('caches.create.configurations.basic.statistics-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.basic.statistics-title')} toolTip={t('caches.create.configurations.basic.statistics-tooltip')} textComponent={TextVariants.h3} />
                 </FormGroup>
                 <FormGroup
                     isInline
                     isRequired
                     fieldId="field-encoding-cache"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.basic.encoding-cache-title')} toolTip={t('caches.create.configurations.basic.encoding-cache-tooltip')} textComponent={TextVariants.h4} />
+                    <MoreInfoTooltip label={t('caches.create.configurations.basic.encoding-cache-title')} toolTip={t('caches.create.configurations.basic.encoding-cache-tooltip')} textComponent={TextVariants.h3} />
                     <Select
                         variant={SelectVariant.single}
                         aria-label={t('caches.create.configurations.basic.encoding-select-label')}

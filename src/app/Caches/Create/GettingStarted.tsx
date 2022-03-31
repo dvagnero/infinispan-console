@@ -30,7 +30,7 @@ const GettingStarted = (props: {
 
     const handleChangeName = (name) => {
         let trimmedName = name.trim();
-        
+
         // Check if name is not null or empty
         if (trimmedName.length > 0) {
             setValidName('success');
@@ -102,7 +102,7 @@ const GettingStarted = (props: {
                     isChecked={createType === 'configure'}
                     label={
                         <TextContent>
-                            <Text component={TextVariants.h3}>{t('caches.create.getting-started.cache-type-radio1')}</Text>
+                            <Text component={TextVariants.h4}>{t('caches.create.getting-started.cache-type-radio1')}</Text>
                         </TextContent>
                     }
                     description={t('caches.create.getting-started.cache-type-radio1-helper')}
@@ -114,7 +114,7 @@ const GettingStarted = (props: {
                     isChecked={createType === 'edit'}
                     label={
                         <TextContent>
-                            <Text component={TextVariants.h3}>
+                            <Text component={TextVariants.h4}>
                                 {t('caches.create.getting-started.cache-type-radio2')}
                             </Text>
                         </TextContent>
