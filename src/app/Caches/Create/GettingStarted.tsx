@@ -68,11 +68,11 @@ const GettingStarted = (props: {
     const formCache = () => {
         return (
             <FormGroup
-                label={t('caches.create.cache-name')}
+                label={t('caches.create.getting-started.cache-name-label')}
                 isRequired
                 fieldId="cache-name"
                 validated={validName}
-                helperTextInvalid={t('caches.create.cache-name-help-invalid')}
+                helperTextInvalid={t('caches.create.getting-started.cache-name-label-invalid')}
             >
                 <TextInput
                     isRequired
@@ -102,10 +102,10 @@ const GettingStarted = (props: {
                     isChecked={createType === 'configure'}
                     label={
                         <TextContent>
-                            <Text component={TextVariants.h4}>{t('caches.create.getting-started.cache-type-radio1')}</Text>
+                            <Text component={TextVariants.h4}>{t('caches.create.getting-started.cache-create-builder')}</Text>
                         </TextContent>
                     }
-                    description={t('caches.create.getting-started.cache-type-radio1-helper')}
+                    description={t('caches.create.getting-started.cache-create-builder-help')}
                 />
                 <Radio
                     name="radio"
@@ -115,11 +115,11 @@ const GettingStarted = (props: {
                     label={
                         <TextContent>
                             <Text component={TextVariants.h4}>
-                                {t('caches.create.getting-started.cache-type-radio2')}
+                                {t('caches.create.getting-started.cache-create-add')}
                             </Text>
                         </TextContent>
                     }
-                    description={t('caches.create.getting-started.cache-type-radio2-helper')}
+                    description={t('caches.create.getting-started.cache-create-add-help')}
                 />
             </FormGroup>
         );
@@ -128,17 +128,13 @@ const GettingStarted = (props: {
     return (
         <Form>
             <TextContent>
-                <Text component={TextVariants.h1}>{t('caches.create.getting-started.page-title')}</Text>
-            </TextContent>
-
-            <TextContent>
-                <Text component={TextVariants.h3}>{t('caches.create.getting-started.cache-name')}</Text>
+                <Text component={TextVariants.h2}>{t('caches.create.getting-started.cache-name-title')}</Text>
             </TextContent>
 
             {formCache()}
 
             <TextContent>
-                <Text component={TextVariants.h3}>{t('caches.create.getting-started.cache-type')}</Text>
+                <Text component={TextVariants.h2}>{t('caches.create.getting-started.cache-create-title')}</Text>
             </TextContent>
 
             {formConfigCache()}

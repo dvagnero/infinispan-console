@@ -22,6 +22,7 @@ const AdvancedOptions = (props: {
     advancedOptionsModifier: (AdvancedConfigurationStep) => void,
 }) => {
     const { t } = useTranslation();
+    const brandname = t('brandname.brandname');
 
     const [storage, setStorage] = useState<StorageType>(props.advancedOptions.storage as StorageType);
     const [concurrencyLevel, setConcurrencyLevel] = useState<number>(props.advancedOptions.concurrencyLevel || 0);
@@ -61,18 +62,12 @@ const AdvancedOptions = (props: {
     const formMemory = () => {
         return (
             <React.Fragment>
-                <TextContent>
-                    <Text component={TextVariants.h1}>{t('caches.create.configurations.advanced-options.page-title')}</Text>
-                </TextContent>
-                <TextContent>
-                    <Text component={TextVariants.p}>{t('caches.create.configurations.advanced-options.page-subtitle')}</Text>
-                </TextContent>
+                <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.storage-title')} toolTip={t('caches.create.configurations.advanced-options.storage-tooltip')} textComponent={TextVariants.h2} />
                 <FormGroup
                     isInline
                     isRequired
                     fieldId="field-storage"
                 >
-                    <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.storage-title')} toolTip={t('caches.create.configurations.advanced-options.storage-tooltip')} textComponent={TextVariants.h3} />
                     <Radio
                         name="radio"
                         id="heap"
@@ -80,7 +75,7 @@ const AdvancedOptions = (props: {
                         isChecked={storage as StorageType == StorageType.HEAP}
                         label={
                             <TextContent>
-                                <Text component={TextVariants.h4}>
+                                <Text component={TextVariants.h3}>
                                     {t('caches.create.configurations.advanced-options.radio-heap')}
                                 </Text>
                             </TextContent>
@@ -93,7 +88,7 @@ const AdvancedOptions = (props: {
                         isChecked={storage as StorageType == StorageType.OFF_HEAP}
                         label={
                             <TextContent>
-                                <Text component={TextVariants.h4}>
+                                <Text component={TextVariants.h3}>
                                     {t('caches.create.configurations.advanced-options.radio-off-heap')}
                                 </Text>
                             </TextContent>
@@ -114,12 +109,7 @@ const AdvancedOptions = (props: {
     const formLocking = () => {
         return (
             <React.Fragment>
-                <TextContent>
-                    <Text component={TextVariants.h2}>{t('caches.create.configurations.advanced-options.locking-title')}</Text>
-                </TextContent>
-                <TextContent>
-                    <Text component={TextVariants.p}>{t('caches.create.configurations.advanced-options.locking-subtitle')}</Text>
-                </TextContent>
+                <MoreInfoTooltip label={t('caches.create.configurations.advanced-options.locking-title')} toolTip={t('caches.create.configurations.advanced-options.locking-tooltip')} textComponent={TextVariants.h2} />
                 <FormGroup
                     isInline
                     isRequired

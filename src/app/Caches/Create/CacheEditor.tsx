@@ -112,10 +112,10 @@ const CacheEditor = (props: {
     const displayCacheConfigEditor = () => {
         return (
             <FormGroup
-                label={t('caches.create.configuration')}
+                label={t('caches.create.edit-config.cache-config')} 
                 fieldId="cache-config"
                 validated={validConfig}
-                helperTextInvalid={t('caches.create.configuration-help-invalid')}
+                helperTextInvalid={t('caches.create.edit-config.cache-config-invalid')}
                 isRequired={configs.length == 0}
             >
                 <TextArea
@@ -129,7 +129,7 @@ const CacheEditor = (props: {
                 />
                 <Alert
                     isInline
-                    title={t('caches.create.configuration-info')}
+                    title={t('caches.create.edit-config.demo-cache')}
                     variant={AlertVariant.info}
                     actionLinks={
                         <AlertActionLink
@@ -198,10 +198,7 @@ const CacheEditor = (props: {
     return (
         <React.Fragment>
             <TextContent>
-                <Text component={TextVariants.h3}> {t('caches.create.edit-config.page-title')}</Text>
-            </TextContent>
-            <TextContent style={{ padding: "2rem" }}>
-                <Text component={TextVariants.p}> {t('caches.create.configuration-help')}</Text>
+                <Text component={TextVariants.h2}>{t('caches.create.edit-config.page-title')}</Text>
             </TextContent>
             <Form
             >

@@ -30,9 +30,12 @@ const Review = (props:
     return (
         <Form>
             <TextContent>
-                <Text component={TextVariants.h1}>{t('caches.create.review.page-title')}</Text>
+                <Text component={TextVariants.h1}>{t('caches.create.review.review-title')}</Text>
+                <TextContent>
+                    <Text component={TextVariants.p}>{t('caches.create.review.review-subtitle')}</Text>
+                </TextContent>
                 <Flex>
-                    <Text component={TextVariants.p}>Cache Name : </Text>
+                    <Text component={TextVariants.p}>{t('caches.create.review.review-cache-name')}</Text>
                     <Text component={TextVariants.h4}>{props.cacheName}</Text>
                 </Flex>
             </TextContent>
