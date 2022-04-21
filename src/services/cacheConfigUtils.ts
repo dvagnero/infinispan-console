@@ -161,6 +161,7 @@ export class CacheConfigUtils {
     const distributedCache = 'distributed-cache';
     const replicatedCache = 'replicated-cache';
 
+    // Default cache configuration
     const generalCache = {
       mode: data.basic.mode,
       owners: data.basic.numberOfOwners,
@@ -176,12 +177,14 @@ export class CacheConfigUtils {
       },
     };
 
+    // Choose topology and add to the configuration
     data.basic.topology === 'Distributed'
       ? ((cache = { [distributedCache]: generalCache }),
         (cacheType = distributedCache))
       : ((cache = { [replicatedCache]: generalCache }),
         (cacheType = replicatedCache));
 
+    // config for Expiration cache
     const expiration = () => {
       cache[cacheType]['expiration'] = {
         lifespan: convertToMilliseconds(
@@ -195,6 +198,7 @@ export class CacheConfigUtils {
       };
     };
 
+    // config for Bounded cache
     const featureBounded = () => {
       cache[cacheType]['memory'] = {
         'max-count': data.feature.boundedCache.maxCount,
@@ -203,9 +207,54 @@ export class CacheConfigUtils {
       };
     };
 
+    // Helper for Index entities
+    const indexedEntitiesHelper = () => {
+      let indexedEntities = [];
+      data.feature.indexedCache.indexedEntities.forEach((entity) => {
+        indexedEntities.push('indexed-entity' + ':' + entity);
+      });
+      return indexedEntities;
+    };
+
+    // config for Indexed cache
+    const featureIndexed = () => {
+      cache[cacheType]['indexing'] = {
+        enabled: true,
+        storage: data.feature.indexedCache.indexedStorage,
+        'indexed-entities': indexedEntitiesHelper(),
+        'index-reader': {
+          'refresh-interval': data.feature.indexedCache.indexReader,
+        },
+        'index-writer': {
+          'commit-interval':
+            data.feature.indexedCache.indexWriter.commitInterval,
+          'max-buffered-entries':
+            data.feature.indexedCache.indexWriter.maxBufferedEntries,
+          'queue-count': data.feature.indexedCache.indexWriter.queueCount,
+          'queue-size': data.feature.indexedCache.indexWriter.queueSize,
+          'ram-buffer-size':
+            data.feature.indexedCache.indexWriter.ramBufferSize,
+          'thread-pool-size':
+            data.feature.indexedCache.indexWriter.threadPoolSize,
+          'index-merge': {
+            'calibrate-by-deletes':
+              data.feature.indexedCache.indexMerge.calibrateByDeletes,
+            factor: data.feature.indexedCache.indexMerge.factor,
+            'max-entries': data.feature.indexedCache.indexMerge.maxEntries,
+            'min-size': data.feature.indexedCache.indexMerge.minSize,
+            'max-size': data.feature.indexedCache.indexMerge.maxSize,
+            'max-forced-size':
+              data.feature.indexedCache.indexMerge.maxForcedSize,
+          },
+        },
+      };
+    };
+
     data.basic.expiration === true && expiration();
     data.feature.cacheFeatureSelected.includes(CacheFeature.BOUNDED) &&
       featureBounded();
+    data.feature.cacheFeatureSelected.includes(CacheFeature.INDEXED) &&
+      featureIndexed();
     return JSON.stringify(cache, null, 2);
   }
 

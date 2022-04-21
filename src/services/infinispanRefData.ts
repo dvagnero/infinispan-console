@@ -135,3 +135,8 @@ export enum EvictionType {
   size = 'size',
   count = 'count',
 }
+
+export enum IndexedStorage {
+  persistent = 'persistent',
+  volatile = 'volatile',
+}

@@ -11,6 +11,7 @@ import { CacheFeature, EvictionType } from "@services/infinispanRefData";
 import { useTranslation } from 'react-i18next';
 import { MoreInfoTooltip } from '@app/Common/MoreInfoTooltip';
 import BoundedCache from './Features/BoundedCache';
+import IndexedCache from './Features/IndexedCache';
 
 const ConfigurationFeature = (props: {
     cacheFeature: CacheFeatureStep,
@@ -26,14 +27,18 @@ const ConfigurationFeature = (props: {
     //Bounded Cache
     const [boundedCache, setBoundedCache] = useState<BoundedCache>(props.cacheFeature.boundedCache);
 
+    //Indexed Cache
+    const [indexedCache, setIndexedCache] = useState<IndexedCache>(props.cacheFeature.indexedCache);
+
     const [isOpenCacheFeature, setIsOpenCacheFeature] = useState(false);
 
     useEffect(() => {
         props.cacheFeatureModifier({
             cacheFeatureSelected: cacheFeatureSelected,
-            boundedCache: boundedCache
+            boundedCache: boundedCache,
+            indexedCache: indexedCache
         });
-        if (cacheFeatureSelected.length < 1)
+        if (cacheFeatureSelected.length < 1 || !cacheFeatureSelected.includes(CacheFeature.BOUNDED))
             props.handleIsFormValid(true);
         else if (boundedCache.evictionType === EvictionType.size)
             props.handleIsFormValid(parseInt(boundedCache.maxSize) >= 0)
@@ -41,7 +46,7 @@ const ConfigurationFeature = (props: {
             props.handleIsFormValid(parseInt(boundedCache.maxCount) >= 0)
         else
             props.handleIsFormValid(false);
-    }, [cacheFeatureSelected, boundedCache]);
+    }, [cacheFeatureSelected, boundedCache, indexedCache]);
 
     const onSelect = (event, selection) => {
         if (cacheFeatureSelected.includes(selection)) {
@@ -57,8 +62,9 @@ const ConfigurationFeature = (props: {
     };
 
     const cacheFeatureOptions = () => {
+        const availableOptions = ['BOUNDED', 'INDEXED'];
         return Object.keys(CacheFeature).map((key) => (
-            <SelectOption key={key} value={CacheFeature[key]} isDisabled={key !== 'BOUNDED'} />
+            <SelectOption key={key} value={CacheFeature[key]} isDisabled={!availableOptions.includes(key)} />
         ));
     };
 
@@ -82,6 +88,7 @@ const ConfigurationFeature = (props: {
             </FormGroup>
 
             {cacheFeatureSelected.includes(CacheFeature.BOUNDED) && <BoundedCache boundedOptions={boundedCache} boundedOptionsModifier={setBoundedCache} handleIsFormValid={props.handleIsFormValid} />}
+            {cacheFeatureSelected.includes(CacheFeature.INDEXED) && <IndexedCache indexedOptions={indexedCache} indexedOptionsModifier={setIndexedCache} />}
         </Form>
     );
 };

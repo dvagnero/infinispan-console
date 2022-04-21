@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { useApiAlert } from '@app/utils/useApiAlert';
 import { CacheConfigUtils } from '@services/cacheConfigUtils';
 import { useTranslation } from 'react-i18next';
-import { CacheType, EncodingType, IsolationLevel, StorageType, CacheMode, EvictionStrategy, TimeUnits, EvictionType } from "@services/infinispanRefData";
+import { CacheType, EncodingType, IsolationLevel, StorageType, CacheMode, EvictionStrategy, TimeUnits, EvictionType, IndexedStorage } from "@services/infinispanRefData";
 import GettingStarted from './GettingStarted';
 import CacheEditor from './CacheEditor';
 import ConfigurationBasic from './ConfigurationBasic';
@@ -52,9 +52,38 @@ const BoundedCacheInitialState: BoundedCache = {
     evictionStrategy: EvictionStrategy.REMOVE,
 }
 
+const IndexWriterInitialState: IndexWriter = {
+    commitInterval: -1,
+    lowLevelTrace: false,
+    maxBufferedEntries: -1,
+    queueCount: -1,
+    queueSize: -1,
+    ramBufferSize: -1,
+    threadPoolSize: -1,
+}
+
+const IndexMergeInitialState: IndexMerge = {
+    calibrateByDeletes: false,
+    factor: -1,
+    maxEntries: -1,
+    minSize: -1,
+    maxSize: -1,
+    maxForcedSize: -1,
+}
+
+const IndexedCacheInitialState: IndexedCache = {
+    enableIndexing: true,
+    indexedStorage: IndexedStorage.persistent,
+    indexedEntities: [],
+    indexReader: 0,
+    indexWriter: IndexWriterInitialState,
+    indexMerge: IndexMergeInitialState,
+}
+
 const CacheFeatureInitialState: CacheFeatureStep = {
     cacheFeatureSelected: [],
-    boundedCache: BoundedCacheInitialState
+    boundedCache: BoundedCacheInitialState,
+    indexedCache: IndexedCacheInitialState
 }
 
 const AdvancedOptionsInitialState: AdvancedConfigurationStep = {

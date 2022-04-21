@@ -307,9 +307,36 @@ interface BoundedCache {
   evictionStrategy: string;
 }
 
+interface IndexWriter {
+  commitInterval: number;
+  lowLevelTrace: boolean;
+  maxBufferedEntries: number;
+  queueCount: number;
+  queueSize: number;
+  ramBufferSize: number;
+  threadPoolSize: number;
+}
+interface IndexMerge {
+  calibrateByDeletes: boolean;
+  factor: number;
+  maxEntries: number;
+  minSize: number;
+  maxSize: number;
+  maxForcedSize: number;
+}
+interface IndexedCache {
+  enableIndexing: boolean;
+  indexedStorage: 'persistent' | 'volatile';
+  indexedEntities: string[];
+  indexReader: number;
+  indexWriter: IndexWriter;
+  indexMerge: IndexMerge;
+}
+
 interface CacheFeatureStep {
   cacheFeatureSelected: [string];
   boundedCache: BoundedCache;
+  indexedCache: IndexedCache;
 }
 
 interface AdvancedConfigurationStep {
