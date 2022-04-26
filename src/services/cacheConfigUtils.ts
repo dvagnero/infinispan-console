@@ -209,7 +209,7 @@ export class CacheConfigUtils {
 
     // Helper for Index entities
     const indexedEntitiesHelper = () => {
-      let indexedEntities = [];
+      let indexedEntities:string[] = [];
       data.feature.indexedCache.indexedEntities.forEach((entity) => {
         indexedEntities.push('indexed-entity' + ':' + entity);
       });
@@ -318,12 +318,10 @@ export class CacheConfigUtils {
   }
 
   public static createCacheWithWizardStep(
-    data: CacheConfiguration,
+    config: string,
     cacheName: string
   ): Promise<ActionResponse> {
     const name = cacheName.trim();
-    const config = CacheConfigUtils.createCacheConfigFromData(data);
-
     // Validate Name
     const isValidName: 'success' | 'error' =
       name.length > 0 ? 'success' : 'error';
@@ -343,7 +341,7 @@ export class CacheConfigUtils {
 
     const createCacheCall: Promise<ActionResponse> = ConsoleServices.caches().createCacheWithConfiguration(
       cacheName,
-      CacheConfigUtils.createCacheConfigFromData(data),
+      config,
       'json'
     );
 

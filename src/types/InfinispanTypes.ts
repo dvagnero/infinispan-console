@@ -334,7 +334,7 @@ interface IndexedCache {
 }
 
 interface CacheFeatureStep {
-  cacheFeatureSelected: [string];
+  cacheFeatureSelected: string[];
   boundedCache: BoundedCache;
   indexedCache: IndexedCache;
 }

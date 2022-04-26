@@ -125,6 +125,7 @@ const CreateCacheWizard = (props) => {
     const [advancedOptions, setAdvancedOptions] = useState<AdvancedConfigurationStep>(AdvancedOptionsInitialState);
 
     const [configuration, setConfiguration] = useState<CacheConfiguration>({ basic: basicConfiguration, feature: cacheFeature, advanced: advancedOptions })
+    const [reviewConfig, setReviewConfig] = useState<string>('');
 
     const history = useHistory();
 
@@ -247,7 +248,7 @@ const CreateCacheWizard = (props) => {
     const stepReview = {
         id: 6,
         name: t('caches.create.review.nav-title'),
-        component: <Review cacheName={gettingStarted.cacheName} cacheConfiguration={configuration} />,
+        component: <Review cacheName={gettingStarted.cacheName} cacheConfiguration={configuration} setReviewConfig={setReviewConfig}/>,
         canJumpTo: isFormValid
     }
 
@@ -292,7 +293,7 @@ const CreateCacheWizard = (props) => {
         const createCacheCall =
             gettingStarted.createType === 'edit' ?  // Check wizard option
                 CacheConfigUtils.createCacheWithEditorStep(cacheEditor, gettingStarted.cacheName) :
-                CacheConfigUtils.createCacheWithWizardStep(configuration, gettingStarted.cacheName)
+                CacheConfigUtils.createCacheWithWizardStep(reviewConfig === ''? CacheConfigUtils.createCacheConfigFromData(configuration) : reviewConfig, gettingStarted.cacheName)
 
         createCacheCall
             .then((actionResponse) => {
