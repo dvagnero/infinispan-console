@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Button,
-    Chip,
-    ChipGroup,
     Divider,
     ExpandableSection,
     Flex,
     FlexItem,
     Form,
     FormGroup,
+    Label,
     Text,
     TextContent,
     TextVariants,
     TextInput,
-    TextInputGroup,
-    TextInputGroupMain,
-    TextInputGroupUtilities,
     Switch,
     Radio,
 } from '@patternfly/react-core';
-import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
-
+import { global_spacer_sm } from '@patternfly/react-tokens';
 import { IndexedStorage } from "@services/infinispanRefData";
 import { useTranslation } from 'react-i18next';
 import { MoreInfoTooltip } from '@app/Common/MoreInfoTooltip';
@@ -62,6 +56,7 @@ const IndexedCache = (props: {
     const [isOpenIndexWriter, setIsOpenIndexWriter] = useState(false);
     const [isOpenIndexMerge, setIsOpenIndexMerge] = useState(false);
     const [entityInput, setEntityInput] = useState<string>('');
+    const [validEntity, setValidEntity] = useState<'success' | 'error' | 'default'>('default');
 
     useEffect(() => {
         props.indexedOptionsModifier({
@@ -94,11 +89,6 @@ const IndexedCache = (props: {
         setIndexedEntities(newChips);
     };
 
-    const clearChipsAndInput = () => {
-        setIndexedEntities([]);
-        setEntityInput('');
-    };
-
     const addChip = (newChipText: string) => {
         setIndexedEntities([...indexedEntities, `${newChipText}`]);
         setEntityInput('');
@@ -107,45 +97,29 @@ const IndexedCache = (props: {
     /** enable keyboard only usage while focused on the text input */
     const handleTextInputKeyDown = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter' && entityInput.length) {
-            addChip(entityInput);
+            if (!indexedEntities.includes(entityInput)) {
+                addChip(entityInput);
+                setValidEntity('success')
+            }
+            else {
+                setValidEntity('error');
+            }
         }
     };
 
-    const showClearButton = !!entityInput || !!indexedEntities.length;
-
-    /** render the utilities component only when a component it contains is being rendered */
-    const showUtilities = showClearButton;
-
     const formIndexEntities = () => {
         return (
-            <FormGroup fieldId='indexed-entities'>
-                <MoreInfoTooltip label="Indexed Entities" toolTip="Indexed Entities Tooltip" textComponent={TextVariants.h2} />
-                <TextInputGroup>
-                    <TextInputGroupMain
-                        value={entityInput}
-                        onChange={(val) => setEntityInput(val)}
-                        onKeyDown={handleTextInputKeyDown}
-                        placeholder="search"
-                        aria-label="Search input"
-                    >
-                        <ChipGroup>
-                            {indexedEntities.map(currentChip => (
-                                <Chip key={currentChip} onClick={() => deleteChip(currentChip)}>
-                                    {currentChip}
-                                </Chip>
-                            ))}
-                        </ChipGroup>
-                    </TextInputGroupMain>
-                    {showUtilities && (
-                        <TextInputGroupUtilities>
-                            {showClearButton && (
-                                <Button variant="plain" onClick={clearChipsAndInput} aria-label="Clear button for chips and input">
-                                    <TimesIcon />
-                                </Button>
-                            )}
-                        </TextInputGroupUtilities>
-                    )}
-                </TextInputGroup>
+            <FormGroup isInline fieldId='indexed-entities' validated={validEntity} helperTextInvalid="Entity should be unique">
+                <MoreInfoTooltip label="Indexed Entities" toolTip="Indexed Entities Tooltip" textComponent={TextVariants.h3} />
+
+                {indexedEntities.map(currentChip => (
+                    <Label key={currentChip} onClose={() => deleteChip(currentChip)} color="blue">
+                        {currentChip}
+                    </Label>
+                ))}
+
+                <TextInput style={{ marginTop: global_spacer_sm.value }} value={entityInput} type="text" onChange={(val) => setEntityInput(val)} onKeyDown={handleTextInputKeyDown} />
+
             </FormGroup>
         )
     }
@@ -349,11 +323,11 @@ const IndexedCache = (props: {
                     onChange={() => setEnableIndexing(!enableIndexing)}
                     isReversed
                 />
-                <MoreInfoTooltip label="Enable Indexing" toolTip="Enable indexing tooltip" textComponent={TextVariants.h2} />
+                <MoreInfoTooltip label="Enable Indexing" toolTip="Enable indexing tooltip" textComponent={TextVariants.h3} />
             </FormGroup>
 
             <TextContent>
-                <MoreInfoTooltip label="Storage" toolTip="Storage Tooltip" textComponent={TextVariants.h2} />
+                <MoreInfoTooltip label="Storage" toolTip="Storage Tooltip" textComponent={TextVariants.h3} />
             </TextContent>
 
             <FormGroup
