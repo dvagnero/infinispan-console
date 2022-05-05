@@ -176,13 +176,13 @@
           "encoding-cache-title": "Select an encoding",
           "encoding-cache-tooltip": "Choose a media type that describes data that you store in the cache. Use ProtoStream encoding for optimal performance and interoperability between client applications.",
           "expiration-title": "Expiration",
-          "expiration-tooltip": "Expiration tooltip",
+          "expiration-tooltip": "Enable expiration to detect and remove old, unused entries from your cache. Set the expiration time of cache entries with the maximum idle and lifespan time limits.",
           "lifespan": "Lifespan",
-          "lifespan-tooltip": "Set the lifespan",
-          "lifespan-helper-invalid": "Minimum Life span can be -1",
-          "max-idle": "Max idle",
-          "max-idle-tooltip": "Set the maximum idle time",
-          "max-idle-helper-invalid": "Minimum Max Idle Time can be -1"
+          "lifespan-tooltip": "Sets the maximum amount of time that entries can stay in the cache. When you set the lifespan to -1, the entry never expires.",
+          "lifespan-helper-invalid": "Minimum lifespan time is -1",
+          "max-idle": "Maximum idle",
+          "max-idle-tooltip": "Sets how long entries can remain idle after last access. If operations do not occur for entries, they become idle. When you set the maximum idle to -1, the entry never expires.",
+          "max-idle-helper-invalid": "Minimum value for maximum idle time is -1"
         },
         "feature": {
           "nav-title": "{{brandname}} capabilities",
@@ -297,7 +297,7 @@
       "add-entry-value-help" : "",
       "add-entry-value-validated" : "default",
       "add-entry-content-type-help" : "Select content type.",
-      "add-entry-maxidle-invalid" : "Max idle must be a number",
+      "add-entry-maxidle-invalid" : "Maximum idle must be a number",
       "add-entry-maxidle-help" : "If you set a negative value, the entry is never deleted.",
       "add-entry-maxidle-validated" : "default",
       "add-entry-lifespan-invalid" : "Time to live must be a number.",
